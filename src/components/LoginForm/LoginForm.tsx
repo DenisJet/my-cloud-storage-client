@@ -23,13 +23,7 @@ export const LoginForm = (): JSX.Element => {
   return (
     <form onSubmit={handleSubmit} className=''>
       <input className='border mb-3 p-1 rounded-xl w-full' type='email' ref={emailRef} placeholder='email' required />
-      <input
-        className='border mb-4 p-1 rounded-xl w-full'
-        type='password'
-        ref={passwordRef}
-        placeholder='password'
-        required
-      />
+      <input className='border mb-4 p-1 rounded-xl w-full' ref={passwordRef} placeholder='password' required />
       <div className='m-auto w-min'>
         <button type='submit'>Submit</button>
       </div>
