@@ -27,7 +27,7 @@ export const Tabs = (): JSX.Element => {
           type='button'
           onClick={() => setActiveTab('register')}
         >
-          Registration
+          Register
         </button>
       </div>
       {isSignIn && <LoginForm />}
