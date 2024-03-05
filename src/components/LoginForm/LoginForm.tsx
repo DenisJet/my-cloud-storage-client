@@ -21,12 +21,10 @@ export const LoginForm = (): JSX.Element => {
       const { token } = await Api.auth.login(values);
       console.log('success');
       setCookie(null, '_token', token, { path: '/' });
+      redirect('/storage');
     } catch (err) {
       console.log(err);
     }
-
-    //login(data);
-    //router.push('');
   };
 
   return (
