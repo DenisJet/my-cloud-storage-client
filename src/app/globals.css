@@ -26,13 +26,3 @@ body {
 	padding: 0;
   color: var(--black);
 }
-
-.header {
-  font-size: 24px;
-  font-weight: 600;
-  color: var(--white);
-  background-color: var(--primary);
-  margin: auto;
-  padding: 10px;
-  border-bottom: 1px solid var(--primary);
-}
