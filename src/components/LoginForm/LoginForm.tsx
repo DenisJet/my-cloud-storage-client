@@ -2,6 +2,8 @@
 
 import { useRef } from 'react';
 import { useRouter, redirect } from 'next/navigation';
+import * as Api from '@/api';
+import { setCookie } from 'nookies';
 
 export const LoginForm = (): JSX.Element => {
   const router = useRouter();
@@ -9,12 +11,19 @@ export const LoginForm = (): JSX.Element => {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
 
-  const handleSubmit = (evt: { preventDefault: () => void }) => {
-    evt.preventDefault();
-    const data = {
+  const handleSubmit = async () => {
+    const values = {
       email: emailRef.current?.value,
       password: passwordRef.current?.value,
     };
+
+    try {
+      const { token } = await Api.auth.login(values);
+      console.log('success');
+      setCookie(null, '_token', token, { path: '/' });
+    } catch (err) {
+      console.log(err);
+    }
 
     //login(data);
     //router.push('');
