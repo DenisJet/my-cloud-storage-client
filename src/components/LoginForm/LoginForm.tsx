@@ -11,7 +11,9 @@ export const LoginForm = (): JSX.Element => {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (evt: { preventDefault: () => void }) => {
+    evt.preventDefault();
+
     const values = {
       email: emailRef.current?.value,
       password: passwordRef.current?.value,
@@ -19,9 +21,8 @@ export const LoginForm = (): JSX.Element => {
 
     try {
       const { token } = await Api.auth.login(values);
-      console.log('success');
       setCookie(null, '_token', token, { path: '/' });
-      redirect('/storage');
+      router.push('/storage');
     } catch (err) {
       console.log(err);
     }
