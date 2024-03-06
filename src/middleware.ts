@@ -4,10 +4,10 @@ export function middleware(request: NextRequest) {
   const currentUser = request.cookies.get('_token')?.value;
 
   if (currentUser && !request.nextUrl.pathname.startsWith('/storage')) {
-    return Response.redirect(new URL('/storage', request.url));
+    return Response.redirect(new URL('/', request.url));
   }
 
-  if (!currentUser && !request.nextUrl.pathname.startsWith('/')) {
+  if (!currentUser && request.nextUrl.pathname.startsWith('/storage')) {
     return Response.redirect(new URL('/', request.url));
   }
 }

@@ -9,5 +9,9 @@ export const LogoutButton = () => {
     }
   };
 
-  return <button onClick={onClickLogout}>logout</button>;
+  return (
+    <button className='' type='button' onClick={onClickLogout}>
+      logout
+    </button>
+  );
 };
