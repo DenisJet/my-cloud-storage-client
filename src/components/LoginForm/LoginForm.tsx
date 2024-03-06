@@ -24,7 +24,7 @@ export const LoginForm = (): JSX.Element => {
       setCookie(null, '_token', token, { path: '/' });
       router.push('/storage');
     } catch (err) {
-      console.log(err);
+      alert(err.response.data.message);
     }
   };
 
