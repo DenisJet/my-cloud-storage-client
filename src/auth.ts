@@ -1,9 +1,6 @@
-import { SignJWT, jwtVerify } from 'jose';
-//import { cookies } from 'next/headers';
-import { NextRequest, NextResponse } from 'next/server';
-import { LoginFormDTO, RegisterFormDTO } from './dto/auth.dto';
+import { LoginFormDTO, LoginResponseDTO, RegisterFormDTO, RegisterResponseDTO, User } from './dto/auth.dto';
 
-export const login = async (values: LoginFormDTO) => {
+export const login = async (values: LoginFormDTO): Promise<LoginResponseDTO> => {
   const response = await fetch(process.env.NEXT_PUBLIC_DOMAIN + '/auth/login', {
     method: 'POST',
     headers: {
@@ -15,7 +12,7 @@ export const login = async (values: LoginFormDTO) => {
   return await response.json();
 };
 
-export const register = async (values: RegisterFormDTO) => {
+export const register = async (values: RegisterFormDTO): Promise<RegisterResponseDTO> => {
   const response = await fetch(process.env.NEXT_PUBLIC_DOMAIN + '/auth/register', {
     method: 'POST',
     headers: {
@@ -27,7 +24,7 @@ export const register = async (values: RegisterFormDTO) => {
   return await response.json();
 };
 
-export const getMe = async (token: string | undefined) => {
+export const getMe = async (token: string | undefined): Promise<User> => {
   const response = await fetch(process.env.NEXT_PUBLIC_DOMAIN + '/users/me', {
     method: 'GET',
     headers: { Authorization: `Bearer ${token}` },
