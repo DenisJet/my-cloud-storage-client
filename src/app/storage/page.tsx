@@ -18,10 +18,10 @@ export default async function StoragePage() {
           user_id: <span className='font-semibold'>{user.id}</span>
         </p>
         <p>
-          user name: <span className='font-semibold'>{user.fullName}</span>
+          user_name: <span className='font-semibold'>{user.fullName}</span>
         </p>
         <p>
-          user email: <span className='font-semibold'>{user.email}</span>
+          user_email: <span className='font-semibold'>{user.email}</span>
         </p>
         <div className='text-center'>
           <LogoutButton />
