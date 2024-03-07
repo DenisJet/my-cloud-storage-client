@@ -1,5 +1,6 @@
 'use client';
 
+import { uploadFile } from '@/actions';
 import { useState } from 'react';
 
 export const UploadButton = () => {
@@ -10,18 +11,9 @@ export const UploadButton = () => {
     if (!file) return;
 
     try {
-      const data = new FormData();
-      data.set('file', file);
-
-      const res = await fetch('/api/upload', {
-        method: 'POST',
-        body: data,
-      });
-      // handle the error
-      if (!res.ok) throw new Error(await res.text());
-    } catch (e: any) {
-      // Handle errors here
-      console.error(e);
+      await uploadFile(file);
+    } catch (error) {
+      console.log(error);
     }
   };
 

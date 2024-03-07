@@ -2,12 +2,12 @@
 import { cookies } from 'next/headers';
 import { login, register } from './auth';
 import { LoginFormDTO, RegisterFormDTO } from './dto/auth.dto';
+import { upload } from './file';
 
 export async function authenticate(values: LoginFormDTO) {
   try {
     const { token } = await login(values);
     if (token != undefined) {
-      //const expires = new Date(Date.now() + 300 * 1000);
       cookies().set('_token', `${token}`, { httpOnly: true });
       return true;
     } else {
@@ -30,5 +30,16 @@ export async function registration(values: RegisterFormDTO) {
     cookies().set('_token', `${token}`, { expires, httpOnly: true });
   } catch (error) {
     console.log(error);
+  }
+}
+
+export async function uploadFile(file) {
+  try {
+    const cookieStore = cookies();
+    const token = cookieStore.get('_token');
+
+    return upload(file, token);
+  } catch (err) {
+    console.log(err);
   }
 }
