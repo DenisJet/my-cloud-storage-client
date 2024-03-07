@@ -4,7 +4,7 @@ export interface LoginFormDTO {
 }
 
 export interface LoginResponseDTO {
-  token: string;
+  token: string | undefined;
 }
 
 export type RegisterFormDTO = LoginFormDTO & { fullName: string | undefined };

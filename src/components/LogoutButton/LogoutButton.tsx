@@ -1,11 +1,15 @@
 'use client';
-import * as Api from '@/api';
+
+import { logout } from '@/actions';
+import { useRouter } from 'next/navigation';
 
 export const LogoutButton = () => {
+  const router = useRouter();
+
   const onClickLogout = () => {
     if (window.confirm('Вы действительно хотите выйти?')) {
-      Api.auth.logout();
-      location.href = '/';
+      logout();
+      router.push('/');
     }
   };
 
