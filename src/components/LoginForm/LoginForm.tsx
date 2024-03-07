@@ -2,8 +2,9 @@
 
 import { useRef } from 'react';
 import { useRouter, redirect } from 'next/navigation';
-import * as Api from '@/api';
-import { setCookie } from 'nookies';
+import { login } from '@/auth';
+import { cookies } from 'next/headers';
+import { authenticate } from '@/actions';
 
 export const LoginForm = (): JSX.Element => {
   const router = useRouter();
@@ -20,11 +21,10 @@ export const LoginForm = (): JSX.Element => {
     };
 
     try {
-      const { token } = await Api.auth.login(values);
-      setCookie(null, '_token', token, { path: '/' });
+      await authenticate(values);
       router.push('/storage');
     } catch (err) {
-      alert(err.response.data.message);
+      alert(err);
     }
   };
 

@@ -2,8 +2,7 @@
 
 import { useRef } from 'react';
 import { useRouter, redirect } from 'next/navigation';
-import * as Api from '@/api';
-import { setCookie } from 'nookies';
+import { register } from '@/auth';
 
 export const RegisterForm = (): JSX.Element => {
   const router = useRouter();
@@ -21,7 +20,7 @@ export const RegisterForm = (): JSX.Element => {
     };
 
     try {
-      const { token } = await Api.auth.register(values);
+      const { token } = await register(values);
       setCookie(null, '_token', token, { path: '/' });
       router.push('/storage');
     } catch (err) {

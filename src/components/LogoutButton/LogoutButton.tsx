@@ -1,10 +1,11 @@
 'use client';
-import * as Api from '@/api';
+
+import { logout } from '@/auth';
 
 export const LogoutButton = () => {
   const onClickLogout = () => {
     if (window.confirm('Вы действительно хотите выйти?')) {
-      Api.auth.logout();
+      logout();
       location.href = '/';
     }
   };

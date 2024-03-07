@@ -1,13 +1,11 @@
-import * as Api from '@/api';
+import { getMe } from '@/auth';
 import { LogoutButton } from '@/components/LogoutButton/LogoutButton';
-import axios from 'axios';
 import { cookies } from 'next/headers';
 
 export default async function StoragePage() {
   const cookieStore = cookies();
-  const _token = cookieStore.get('_token')?.value;
-  axios.defaults.headers.Authorization = 'Bearer ' + _token;
-  const user = await Api.auth.getMe();
+  const token = cookieStore.get('_token')?.value;
+  const user = await getMe(token);
 
   return (
     <main className='max-w-7xl m-auto px-2.5 sm:grid grid-cols-4 h-full'>
