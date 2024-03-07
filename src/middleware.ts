@@ -1,13 +1,13 @@
 import type { NextRequest } from 'next/server';
 
 export function middleware(request: NextRequest) {
-  const currentUser = request.cookies.get('_token')?.value;
+  const currentToken = request.cookies.get('_token')?.value;
 
-  if (currentUser && !request.nextUrl.pathname.startsWith('/storage')) {
+  if (currentToken && !request.nextUrl.pathname.startsWith('/storage')) {
     return Response.redirect(new URL('/', request.url));
   }
 
-  if (!currentUser && request.nextUrl.pathname.startsWith('/storage')) {
+  if (!currentToken && request.nextUrl.pathname.startsWith('/storage')) {
     return Response.redirect(new URL('/', request.url));
   }
 }

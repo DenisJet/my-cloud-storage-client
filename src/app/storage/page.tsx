@@ -1,10 +1,16 @@
 import { getMe } from '@/auth';
 import { LogoutButton } from '@/components/LogoutButton/LogoutButton';
 import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
 
 const getUser = () => {
   const cookieStore = cookies();
   const token = cookieStore.get('_token')?.value;
+
+  if (!token || token == undefined) {
+    redirect('/');
+  }
+
   return getMe(token);
 };
 
