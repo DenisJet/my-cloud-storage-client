@@ -3,6 +3,7 @@
 import { useRef } from 'react';
 import { useRouter, redirect } from 'next/navigation';
 import { register } from '@/auth';
+import { registration } from '@/actions';
 
 export const RegisterForm = (): JSX.Element => {
   const router = useRouter();
@@ -13,6 +14,7 @@ export const RegisterForm = (): JSX.Element => {
 
   const handleSubmit = async (evt: { preventDefault: () => void }) => {
     evt.preventDefault();
+
     const values = {
       email: emailRef.current?.value,
       fullName: fullNameRef.current?.value,
@@ -20,11 +22,10 @@ export const RegisterForm = (): JSX.Element => {
     };
 
     try {
-      const { token } = await register(values);
-      setCookie(null, '_token', token, { path: '/' });
+      registration(values);
       router.push('/storage');
     } catch (err) {
-      alert(err.response.data.message);
+      alert(err);
     }
   };
 

@@ -1,9 +1,7 @@
 'use client';
 
 import { useRef } from 'react';
-import { useRouter, redirect } from 'next/navigation';
-import { login } from '@/auth';
-import { cookies } from 'next/headers';
+import { useRouter } from 'next/navigation';
 import { authenticate } from '@/actions';
 
 export const LoginForm = (): JSX.Element => {
@@ -21,8 +19,12 @@ export const LoginForm = (): JSX.Element => {
     };
 
     try {
-      await authenticate(values);
-      router.push('/storage');
+      const user = await authenticate(values);
+      if (user == true) {
+        router.push('/storage');
+      } else {
+        alert('Invalid credentials');
+      }
     } catch (err) {
       alert(err);
     }

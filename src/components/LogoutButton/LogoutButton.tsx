@@ -1,12 +1,15 @@
 'use client';
 
-import { logout } from '@/auth';
+import { logout } from '@/actions';
+import { useRouter } from 'next/navigation';
 
 export const LogoutButton = () => {
+  const router = useRouter();
+
   const onClickLogout = () => {
     if (window.confirm('Вы действительно хотите выйти?')) {
       logout();
-      location.href = '/';
+      router.push('/');
     }
   };
 
