@@ -18,22 +18,23 @@ export default async function StoragePage() {
   const user = await getUser();
 
   return (
-    <main className='max-w-7xl m-auto px-2.5 sm:grid grid-cols-4 h-full'>
-      <div className='bg-sky-50 p-2 my-3 rounded-xl h-28'>
+    <main className='max-w-7xl m-auto px-2.5 sm:grid grid-cols-3 lg:grid-cols-4 h-full'>
+      <div className='bg-sky-50 p-2 my-3 rounded-xl h-min'>
+        <h1 className='font-semibold text-xl mb-3'>My profile</h1>
         <p>
-          user_id: <span className='font-semibold'>{user.id}</span>
+          ID: <span className='font-semibold'>{user.id}</span>
         </p>
         <p>
-          user_name: <span className='font-semibold'>{user.fullName}</span>
+          Name: <span className='font-semibold'>{user.fullName}</span>
         </p>
         <p>
-          user_email: <span className='font-semibold'>{user.email}</span>
+          E-mail: <span className='font-semibold'>{user.email}</span>
         </p>
-        <div className='text-center'>
+        <div className='text-center mt-3'>
           <LogoutButton />
         </div>
       </div>
-      <div className='p-2 my-3 col-span-3'>Storage</div>
+      <div className='p-2 my-3 sm:col-span-2 lg:col-span-3'>Storage</div>
     </main>
   );
 }
