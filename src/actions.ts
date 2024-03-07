@@ -7,7 +7,7 @@ export async function authenticate(values: LoginFormDTO) {
   try {
     const { token } = await login(values);
     if (token != undefined) {
-      const expires = new Date(Date.now() + 1800 * 1000);
+      const expires = new Date(Date.now() + 300 * 1000);
       cookies().set('_token', `${token}`, { expires, httpOnly: true });
       return true;
     } else {
