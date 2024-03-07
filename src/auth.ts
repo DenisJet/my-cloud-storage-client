@@ -3,7 +3,7 @@ import { SignJWT, jwtVerify } from 'jose';
 import { NextRequest, NextResponse } from 'next/server';
 
 export const login = async (values) => {
-  const response = await fetch('http://localhost:7777/auth/login', {
+  const response = await fetch(process.env.NEXT_PUBLIC_DOMAIN + '/auth/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -15,7 +15,7 @@ export const login = async (values) => {
 };
 
 export const register = async (values) => {
-  const response = await fetch('http://localhost:7777/auth/register', {
+  const response = await fetch(process.env.NEXT_PUBLIC_DOMAIN + '/auth/register', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -27,7 +27,7 @@ export const register = async (values) => {
 };
 
 export const getMe = async (token) => {
-  const response = await fetch('http://localhost:7777/users/me', {
+  const response = await fetch(process.env.NEXT_PUBLIC_DOMAIN + '/users/me', {
     method: 'GET',
     headers: { Authorization: `Bearer ${token}` },
   });
