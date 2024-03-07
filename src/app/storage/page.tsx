@@ -15,7 +15,7 @@ export default async function StoragePage() {
     <main className='max-w-7xl m-auto px-2.5 sm:grid grid-cols-4 h-full'>
       <div className='bg-sky-50 p-2 my-3 rounded-xl h-28'>
         <p>
-          user id: <span className='font-semibold'>{user.id}</span>
+          user_id: <span className='font-semibold'>{user.id}</span>
         </p>
         <p>
           user name: <span className='font-semibold'>{user.fullName}</span>
