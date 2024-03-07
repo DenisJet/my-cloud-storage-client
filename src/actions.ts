@@ -1,8 +1,9 @@
 'use server';
 import { cookies } from 'next/headers';
 import { login, register } from './auth';
+import { LoginFormDTO, RegisterFormDTO } from './dto/auth.dto';
 
-export async function authenticate(values) {
+export async function authenticate(values: LoginFormDTO) {
   try {
     const { token } = await login(values);
     if (token != undefined) {
@@ -21,7 +22,7 @@ export const logout = () => {
   cookies().delete('_token');
 };
 
-export async function registration(values) {
+export async function registration(values: RegisterFormDTO) {
   try {
     const { token } = await register(values);
     const expires = new Date(Date.now() + 1800 * 1000);
