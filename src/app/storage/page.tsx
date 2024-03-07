@@ -1,5 +1,6 @@
 import { getMe } from '@/auth';
 import { LogoutButton } from '@/components/LogoutButton/LogoutButton';
+import { UploadButton } from '@/components/UploadButton/UploadButton';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 
@@ -27,9 +28,13 @@ export default async function StoragePage() {
         <p>
           Name: <span className='font-semibold'>{user.fullName}</span>
         </p>
-        <p>
+        <p className='mb-3'>
           E-mail: <span className='font-semibold'>{user.email}</span>
         </p>
+        <div className='pt-3 border-y-2'>
+          <p className='mb-3 font-semibold text-lg'>Upload File</p>
+          <UploadButton />
+        </div>
         <div className='text-center mt-3'>
           <LogoutButton />
         </div>
