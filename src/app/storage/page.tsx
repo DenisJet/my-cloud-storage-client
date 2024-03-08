@@ -2,12 +2,11 @@ import { getMe } from '@/actions/auth.actions';
 import { getFiles } from '@/actions/file.actions';
 import { LogoutButton } from '@/components/LogoutButton/LogoutButton';
 import { UploadButton } from '@/components/UploadButton/UploadButton';
-import { cookies } from 'next/headers';
+import { getToken } from '@/utils/token';
 import { redirect } from 'next/navigation';
 
 const getUser = () => {
-  const cookieStore = cookies();
-  const token = cookieStore.get('_token')?.value;
+  const token = getToken();
 
   if (!token || token == undefined) {
     redirect('/');

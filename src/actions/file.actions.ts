@@ -1,11 +1,10 @@
 'use server';
 import { FileItem } from '@/dto/file.dto';
-import { cookies } from 'next/headers';
+import { getToken } from '@/utils/token';
 
 export async function uploadFile(formData: FormData) {
   try {
-    const cookieStore = cookies();
-    const token = cookieStore.get('_token')?.value;
+    const token = getToken();
 
     const res = await fetch(process.env.NEXT_PUBLIC_DOMAIN + '/files', {
       method: 'POST',
@@ -22,8 +21,7 @@ export async function uploadFile(formData: FormData) {
 type FileType = 'all' | 'photos';
 
 export const getFiles = async (type: FileType = 'all'): Promise<FileItem[]> => {
-  const cookieStore = cookies();
-  const token = cookieStore.get('_token')?.value;
+  const token = getToken();
 
   const response = await fetch(process.env.NEXT_PUBLIC_DOMAIN + '/files?type=' + type, {
     headers: { Authorization: `Bearer ${token}` },
