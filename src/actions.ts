@@ -7,8 +7,9 @@ import { upload } from './file';
 export async function authenticate(values: LoginFormDTO) {
   try {
     const { token } = await login(values);
+    const expires = new Date(Date.now() + 1800 * 1000);
     if (token != undefined) {
-      cookies().set('_token', `${token}`, { httpOnly: true });
+      cookies().set('_token', `${token}`, { expires, httpOnly: true });
       return true;
     } else {
       return false;
