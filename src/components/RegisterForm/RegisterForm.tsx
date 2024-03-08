@@ -1,9 +1,8 @@
 'use client';
 
 import { useRef } from 'react';
-import { useRouter, redirect } from 'next/navigation';
-import { register } from '@/auth';
-import { registration } from '@/actions';
+import { useRouter } from 'next/navigation';
+import { registration } from '@/actions/auth.actions';
 
 export const RegisterForm = (): JSX.Element => {
   const router = useRouter();
@@ -22,8 +21,12 @@ export const RegisterForm = (): JSX.Element => {
     };
 
     try {
-      registration(values);
-      router.push('/storage');
+      const newUser = await registration(values);
+      if (newUser == true) {
+        router.push('/storage');
+      } else {
+        alert('Something went wrong');
+      }
     } catch (err) {
       alert(err);
     }

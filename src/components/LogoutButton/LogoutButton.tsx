@@ -1,6 +1,6 @@
 'use client';
 
-import { logout } from '@/actions';
+import { logout } from '@/actions/auth.actions';
 import { useRouter } from 'next/navigation';
 
 export const LogoutButton = () => {

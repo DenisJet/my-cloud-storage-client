@@ -1,20 +1,23 @@
 'use client';
 
-import { uploadFile } from '@/actions';
-import { upload } from '@/file';
+import { uploadFile } from '@/actions/file.actions';
 import { useState } from 'react';
 
 export const UploadButton = () => {
   const [file, setFile] = useState<File>();
 
-  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const onSubmit = async () => {
     if (!file) return;
 
     const formData = new FormData();
     formData.set('file', file);
 
-    uploadFile(formData);
+    try {
+      const res = await uploadFile(formData);
+      alert(res);
+    } catch (error) {
+      alert('Something went wrong');
+    }
   };
 
   return (

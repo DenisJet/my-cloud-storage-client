@@ -2,7 +2,7 @@
 
 import { useRef } from 'react';
 import { useRouter } from 'next/navigation';
-import { authenticate } from '@/actions';
+import { authenticate } from '@/actions/auth.actions';
 
 export const LoginForm = (): JSX.Element => {
   const router = useRouter();

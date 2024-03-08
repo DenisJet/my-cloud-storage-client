@@ -1,4 +1,4 @@
-import { getMe } from '@/auth';
+import { getMe } from '@/actions/auth.actions';
 import { LogoutButton } from '@/components/LogoutButton/LogoutButton';
 import { UploadButton } from '@/components/UploadButton/UploadButton';
 import { cookies } from 'next/headers';
