@@ -1,7 +1,6 @@
 'use server';
 import { cookies } from 'next/headers';
 import { LoginFormDTO, RegisterFormDTO } from '../dto/auth.dto';
-import { redirect } from 'next/navigation';
 
 ////////////////////////////////////////////////////
 
