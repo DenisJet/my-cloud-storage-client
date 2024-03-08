@@ -1,4 +1,5 @@
 import { getMe } from '@/actions/auth.actions';
+import { getFiles } from '@/actions/file.actions';
 import { LogoutButton } from '@/components/LogoutButton/LogoutButton';
 import { UploadButton } from '@/components/UploadButton/UploadButton';
 import { cookies } from 'next/headers';
@@ -17,6 +18,7 @@ const getUser = () => {
 
 export default async function StoragePage() {
   const user = await getUser();
+  const files = await getFiles();
 
   return (
     <main className='max-w-7xl m-auto px-2.5 sm:grid grid-cols-3 lg:grid-cols-4 h-full'>
@@ -39,7 +41,10 @@ export default async function StoragePage() {
           <LogoutButton />
         </div>
       </div>
-      <div className='p-2 my-3 sm:col-span-2 lg:col-span-3'>Storage</div>
+      <div className='p-2 my-3 sm:col-span-2 lg:col-span-3'>
+        Storage
+        <div>{files && files.map((file) => <p>{file.originalName}</p>)}</div>
+      </div>
     </main>
   );
 }

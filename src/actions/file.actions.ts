@@ -1,4 +1,5 @@
 'use server';
+import { FileItem } from '@/dto/file.dto';
 import { cookies } from 'next/headers';
 
 export async function uploadFile(formData: FormData) {
@@ -20,10 +21,17 @@ export async function uploadFile(formData: FormData) {
 
 type FileType = 'all' | 'photos';
 
-// export const getAll = async (type: FileType = "all"): Promise<FileItem[]> => {
-//   return (await axios.get("/files?type=" + type)).data;
-// };
+export const getFiles = async (type: FileType = 'all'): Promise<FileItem[]> => {
+  const cookieStore = cookies();
+  const token = cookieStore.get('_token')?.value;
+
+  const response = await fetch(process.env.NEXT_PUBLIC_DOMAIN + '/files?type=' + type, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+
+  return response.json();
+};
 
 // export const remove = (ids: number[]): Promise<void> => {
-//   return axios.delete("/files?ids=" + ids);
+//   return axios.delete('/files?ids=' + ids);
 // };
