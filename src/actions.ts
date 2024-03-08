@@ -34,12 +34,22 @@ export async function registration(values: RegisterFormDTO) {
   }
 }
 
-export async function uploadFile(file) {
+export async function uploadFile(formData) {
   try {
     const cookieStore = cookies();
-    const token = cookieStore.get('_token');
+    const token = cookieStore.get('_token')?.value;
 
-    return upload(file, token);
+    console.log(formData);
+    console.log(token);
+
+    const res = await fetch(process.env.NEXT_PUBLIC_DOMAIN + '/files', {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${token}` },
+      body: formData,
+    });
+
+    console.log(res.status);
+    console.log(res.statusText);
   } catch (err) {
     console.log(err);
   }

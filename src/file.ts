@@ -8,18 +8,13 @@ type FileType = 'all' | 'photos';
 //   return axios.delete("/files?ids=" + ids);
 // };
 
-export const upload = async (file, token) => {
-  const formData = new FormData();
-  formData.append('file', file);
-
+export const upload = async (formData, token) => {
   try {
-    const data = await fetch(process.env.NEXT_PUBLIC_DOMAIN + '/files', {
+    return await fetch(process.env.NEXT_PUBLIC_DOMAIN + '/files', {
       method: 'POST',
       headers: { 'Content-Type': 'multipart/form-data', Authorization: `Bearer ${token}` },
       body: formData,
     });
-
-    return data;
   } catch (err) {
     console.log(err);
   }

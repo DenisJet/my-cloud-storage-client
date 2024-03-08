@@ -1,6 +1,7 @@
 'use client';
 
 import { uploadFile } from '@/actions';
+import { upload } from '@/file';
 import { useState } from 'react';
 
 export const UploadButton = () => {
@@ -10,11 +11,10 @@ export const UploadButton = () => {
     e.preventDefault();
     if (!file) return;
 
-    try {
-      await uploadFile(file);
-    } catch (error) {
-      console.log(error);
-    }
+    const formData = new FormData();
+    formData.set('file', file);
+
+    uploadFile(formData);
   };
 
   return (
