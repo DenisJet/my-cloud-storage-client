@@ -1,5 +1,6 @@
 import { getUser } from '@/actions/auth.actions';
 import { getFiles } from '@/actions/file.actions';
+import { FileCard } from '@/components/FileCard/FileCard';
 import { LogoutButton } from '@/components/LogoutButton/LogoutButton';
 import { UploadButton } from '@/components/UploadButton/UploadButton';
 
@@ -29,8 +30,10 @@ export default async function StoragePage() {
         </div>
       </div>
       <div className='p-2 my-3 sm:col-span-2 lg:col-span-3'>
-        Storage
-        <div>{files && files.map((file) => <p>{file.originalName}</p>)}</div>
+        <h2 className='font-semibold text-xl mb-3'>Storage</h2>
+        <div className='flex gap-2 items-center flex-wrap'>
+          {files && files.map((file) => <FileCard filename={file.filename} originalName={file.originalName} />)}
+        </div>
       </div>
     </main>
   );
