@@ -1,7 +1,8 @@
 'use server';
 import { cookies } from 'next/headers';
 import { LoginFormDTO, RegisterFormDTO } from '../dto/auth.dto';
-import { setToken } from '@/utils/token';
+import { getToken, setToken } from '@/utils/token';
+import { redirect } from 'next/navigation';
 
 ////////////////////////////////////////////////////
 
@@ -63,13 +64,23 @@ export async function authenticate(values: LoginFormDTO) {
 
 ///////////////////////////////////////////////
 
-export const getMe = async (token: string) => {
+const getMe = async (token: string) => {
   const response = await fetch(process.env.NEXT_PUBLIC_DOMAIN + '/users/me', {
     method: 'GET',
     headers: { Authorization: `Bearer ${token}` },
   });
 
   return await response.json();
+};
+
+export const getUser = () => {
+  const token = getToken();
+
+  if (!token || token == undefined) {
+    redirect('/');
+  }
+
+  return getMe(token);
 };
 
 ////////////////////////////////////////////////

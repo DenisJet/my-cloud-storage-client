@@ -1,19 +1,7 @@
-import { getMe } from '@/actions/auth.actions';
+import { getUser } from '@/actions/auth.actions';
 import { getFiles } from '@/actions/file.actions';
 import { LogoutButton } from '@/components/LogoutButton/LogoutButton';
 import { UploadButton } from '@/components/UploadButton/UploadButton';
-import { getToken } from '@/utils/token';
-import { redirect } from 'next/navigation';
-
-const getUser = () => {
-  const token = getToken();
-
-  if (!token || token == undefined) {
-    redirect('/');
-  }
-
-  return getMe(token);
-};
 
 export default async function StoragePage() {
   const user = await getUser();
