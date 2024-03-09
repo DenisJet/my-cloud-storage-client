@@ -11,7 +11,7 @@ export const FileCard: React.FC<FileCardProps> = ({ originalName, filename }) =>
   const imageUrl = ext && isImage(ext) ? 'http://localhost:7777/uploads/' + filename : '';
 
   return (
-    <div className='w-20 align-self: stretch truncate cursor-pointer hover:opacity-75'>
+    <div className='w-20 align-self: stretch truncate cursor-pointer hover:opacity-75 text-center'>
       {ext && isImage(ext) ? (
         <img className='w-20 h-20 object-contain' src={imageUrl} alt='image' />
       ) : (
