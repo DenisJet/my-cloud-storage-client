@@ -12,7 +12,7 @@ export const FileCard: React.FC<FileCardProps> = ({ originalName, filename }) =>
 
   return (
     <div className='w-20 align-self: stretch truncate cursor-pointer hover:opacity-75'>
-      {isImage(ext) ? (
+      {ext && isImage(ext) ? (
         <img className='w-20 h-20 object-contain' src={imageUrl} alt='image' />
       ) : (
         <img className='w-20 h-20 object-contain' src='/icon-text-file-80.png' alt='image' />
