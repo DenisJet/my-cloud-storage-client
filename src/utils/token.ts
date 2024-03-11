@@ -6,5 +6,6 @@ export const getToken = () => {
 };
 
 export const setToken = (token: string) => {
-  cookies().set('_token', `${token}`, { httpOnly: true });
+  const expires = new Date(Date.now() + 43200 * 1000);
+  cookies().set('_token', `${token}`, { expires, httpOnly: true });
 };
