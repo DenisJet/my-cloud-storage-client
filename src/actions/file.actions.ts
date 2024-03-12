@@ -30,6 +30,11 @@ export const getFiles = async (type: FileType = 'all'): Promise<FileItem[]> => {
   return response.json();
 };
 
-export const remove = (ids: number[]): Promise<void> => {
-  return axios.delete('/files?ids=' + ids);
+export const remove = async (ids: number[]): Promise<void> => {
+  const token = getToken();
+
+  await fetch(process.env.NEXT_PUBLIC_DOMAIN + '/files?ids=' + ids, {
+    method: 'DELETE',
+    headers: { Authorization: `Bearer ${token}` },
+  });
 };

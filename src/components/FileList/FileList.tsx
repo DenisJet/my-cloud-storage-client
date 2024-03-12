@@ -11,7 +11,7 @@ export const FileList: React.FC<FileListProps> = ({ files }) => {
       {files &&
         files.map((file: FileItem) => (
           <li key={file.id}>
-            <FileCard filename={file.filename} originalName={file.originalName} />
+            <FileCard filename={file.filename} originalName={file.originalName} id={file.id} />
           </li>
         ))}
     </ul>

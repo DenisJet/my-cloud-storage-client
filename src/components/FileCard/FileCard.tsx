@@ -28,8 +28,12 @@ export const FileCard: React.FC<FileCardProps> = ({ originalName, filename, id }
   }, []);
 
   const onClickDelete = () => {
-    if (window.confirm('Вы действительно хотите выйти?')) {
-      remove(id);
+    const idsArr = [];
+    idsArr.push(id);
+
+    if (window.confirm('Вы действительно хотите удалить файл?')) {
+      remove(idsArr);
+      window.location.reload();
     }
   };
 
@@ -64,7 +68,7 @@ export const FileCard: React.FC<FileCardProps> = ({ originalName, filename, id }
           <button type='button' className='mb-3 hover:underline hover:opacity-50 text-green-500 z-index-0'>
             Load
           </button>
-          <button type='button' className='hover:underline hover:opacity-50 text-red-500'>
+          <button type='button' className='hover:underline hover:opacity-50 text-red-500' onClick={onClickDelete}>
             Delete
           </button>
         </div>
