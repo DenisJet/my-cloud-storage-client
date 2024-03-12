@@ -30,6 +30,6 @@ export const getFiles = async (type: FileType = 'all'): Promise<FileItem[]> => {
   return response.json();
 };
 
-// export const remove = (ids: number[]): Promise<void> => {
-//   return axios.delete('/files?ids=' + ids);
-// };
+export const remove = (ids: number[]): Promise<void> => {
+  return axios.delete('/files?ids=' + ids);
+};

@@ -14,7 +14,7 @@ export const LogoutButton = () => {
   };
 
   return (
-    <button className='text-red-500 hover:opacity-60' type='button' onClick={onClickLogout}>
+    <button className='text-red-500 hover:opacity-60 hover:underline' type='button' onClick={onClickLogout}>
       Logout
     </button>
   );
