@@ -1,0 +1,9 @@
+version: '3'
+services:
+  todo.client:
+    image: my-cloud-storage-client:latest
+    container_name: mytodo-client
+    pull_policy: always
+    restart: always
+    ports:
+      - 3000:3000
