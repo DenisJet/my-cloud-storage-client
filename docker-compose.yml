@@ -1,8 +1,8 @@
 version: '3'
 services:
   todo.client:
-    image: my-cloud-storage-client:latest
-    container_name: mytodo-client
+    image: ghcr.io/denisjet/my-cloud-storage-client/my-cloud-storage-client:latest
+    container_name: my-cloud-storage-client
     pull_policy: always
     restart: always
     ports:
