@@ -15,9 +15,10 @@ export const FileCard: React.FC<FileCardProps> = ({ originalName, filename, id }
   const cardRef = useRef<HTMLDivElement>(null);
 
   const ext = getExt(filename);
-  const imageUrl = ext && isImage(ext) ? 'http://localhost:7777/uploads/' + filename : '';
+  const imgUrl = ext && isImage(ext) ? `${process.env.NEXT_PUBLIC_DOMAIN}/uploads/` + filename : '';
+  const fileUrl = `${process.env.NEXT_PUBLIC_DOMAIN}/uploads/` + filename;
 
-  const clickHandler = (evt) => {
+  const clickHandler = (evt: any) => {
     if (cardRef.current && !cardRef.current.contains(evt.target)) {
       setActiveCard(false);
     }
@@ -48,14 +49,14 @@ export const FileCard: React.FC<FileCardProps> = ({ originalName, filename, id }
       {ext && isImage(ext) ? (
         <img
           data-ui={activeCard ? 'checked active' : ''}
-          className='w-20 h-20 object-contain data-checked:opacity-25 hover:opacity-75 z-index-0'
-          src={imageUrl}
+          className='w-28 h-28 object-contain data-checked:opacity-25 hover:opacity-75 z-index-0'
+          src={imgUrl}
           alt='image'
         />
       ) : (
         <img
           data-ui={activeCard ? 'checked active' : ''}
-          className='w-20 h-20 object-contain data-checked:opacity-25 hover:opacity-75'
+          className='w-28 h-28 object-contain data-checked:opacity-25 hover:opacity-75'
           src='/icon-text-file-80.png'
           alt='image'
         />
@@ -65,9 +66,14 @@ export const FileCard: React.FC<FileCardProps> = ({ originalName, filename, id }
       </span>
       {activeCard && (
         <div className='absolute top-3 left-2 flex flex-col font-semibold'>
-          <button type='button' className='mb-3 hover:underline hover:opacity-50 text-green-500 z-index-0'>
+          <a
+            href={fileUrl}
+            download={filename}
+            target='_blank'
+            className='mb-3 hover:underline hover:opacity-50 text-green-500 z-index-0'
+          >
             Load
-          </button>
+          </a>
           <button type='button' className='hover:underline hover:opacity-50 text-red-500' onClick={onClickDelete}>
             Delete
           </button>

@@ -12,13 +12,8 @@ export const UploadButton = () => {
     const formData = new FormData();
     formData.set('file', file);
 
-    try {
-      const res = await uploadFile(formData);
-      alert(res);
-      window.location.reload();
-    } catch (error) {
-      alert('Something went wrong');
-    }
+    await uploadFile(formData);
+    window.location.reload();
   };
 
   return (
